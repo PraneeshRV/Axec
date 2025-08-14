@@ -1,0 +1,52 @@
+name: Build and publish Flatpak repo
+
+on:
+  workflow_dispatch: {}
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  flatpak:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Flatpak tooling and runtimes
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak flatpak-builder elfutils
+          sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          sudo flatpak install -y flathub \
+            org.freedesktop.Platform//24.08 \
+            org.freedesktop.Sdk//24.08 \
+            org.freedesktop.Sdk.Extension.rust-stable//24.08 \
+            org.freedesktop.Sdk.Extension.node20//24.08
+
+      - name: Build Flatpak repo
+        run: |
+          mkdir -p build-dir/repo
+          flatpak-builder \
+            --force-clean \
+            --repo=build-dir/repo \
+            --default-branch=stable \
+            --ccache \
+            --delete-build-dirs \
+            build-dir/appdir \
+            packaging/com.praneeshrv.Axec.json
+          flatpak build-bundle build-dir/repo axec.flatpak com.praneeshrv.Axec stable
+
+      - name: Publish Flatpak repo to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: build-dir/repo
+          keep_files: true
+
+      - name: Upload bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: axec-flatpak-bundle
+          path: axec.flatpak
