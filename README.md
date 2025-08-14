@@ -4,6 +4,8 @@
 
 Lightweight, fast AppImage manager built with Tauri + React.
 
+## (Not fully tested yet !)
+
 </div>
 
 ## ✨ Features
