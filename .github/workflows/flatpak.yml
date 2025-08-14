@@ -34,7 +34,6 @@ jobs:
             --default-branch=stable \
             --ccache \
             --delete-build-dirs \
-            --allow-network \
             ../build-dir/appdir \
             com.praneeshrv.Axec.json
           flatpak build-bundle ../build-dir/repo ../axec.flatpak com.praneeshrv.Axec stable

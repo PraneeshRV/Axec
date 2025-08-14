@@ -19,14 +19,7 @@
     "append-path": "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/node20/bin",
     "env": {
       "CARGO_HOME": "/run/build/axec/cargo",
-  "RUSTFLAGS": "-C target-cpu=native",
-  "CI": "true",
-  "NODE_ENV": "development",
-  "NPM_CONFIG_FUND": "false",
-  "NPM_CONFIG_AUDIT": "false",
-  "NPM_CONFIG_PROGRESS": "false",
-  "NPM_CONFIG_LOGLEVEL": "warn",
-  "NPM_CONFIG_CACHE": "/run/build/axec/.npm"
+      "RUSTFLAGS": "-C target-cpu=native"
     }
   },
   "modules": [
@@ -34,11 +27,7 @@
       "name": "axec",
       "buildsystem": "simple",
       "build-commands": [
-        "corepack enable || true",
-        "corepack prepare npm@9.9.3 --activate || true",
-        "mkdir -p /run/build/axec/.npm",
-        "npm config set cache /run/build/axec/.npm",
-        "npm install --no-audit --no-fund",
+        "npm ci",
         "npm run build",
         "npm run tauri build -- --bundles none",
         "install -Dm755 src-tauri/target/release/axec /app/bin/axec",
