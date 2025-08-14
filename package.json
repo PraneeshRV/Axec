@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
   "dev": "vite",
-    "build": "tsc && vite build",
+  "build": "(command -v tsc >/dev/null 2>&1 || npx -y typescript@5.6.2 tsc) && vite build",
     "preview": "vite preview",
     "tauri": "tauri"
   },
