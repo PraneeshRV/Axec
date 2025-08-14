@@ -25,17 +25,18 @@ jobs:
             org.freedesktop.Sdk.Extension.node20//24.08
 
       - name: Build Flatpak repo
+        working-directory: packaging
         run: |
-          mkdir -p build-dir/repo
+          mkdir -p ../build-dir/repo
           flatpak-builder \
             --force-clean \
-            --repo=build-dir/repo \
+            --repo=../build-dir/repo \
             --default-branch=stable \
             --ccache \
             --delete-build-dirs \
-            build-dir/appdir \
-            packaging/com.praneeshrv.Axec.json
-          flatpak build-bundle build-dir/repo axec.flatpak com.praneeshrv.Axec stable
+            ../build-dir/appdir \
+            com.praneeshrv.Axec.json
+          flatpak build-bundle ../build-dir/repo ../axec.flatpak com.praneeshrv.Axec stable
 
       - name: Publish Flatpak repo to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

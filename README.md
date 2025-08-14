@@ -56,13 +56,18 @@ Local build and run:
 ```sh
 flatpak install -y flathub org.freedesktop.Platform//24.08 org.freedesktop.Sdk//24.08 \
 	org.freedesktop.Sdk.Extension.rust-stable org.freedesktop.Sdk.Extension.node20
-flatpak-builder --user --install --force-clean build-dir packaging/com.praneeshrv.Axec.json
+cd packaging
+flatpak-builder --user --install --force-clean ../build-dir com.praneeshrv.Axec.json
+cd -
 flatpak run com.praneeshrv.Axec
 ```
 
 Self-host a repo (optional):
 ```sh
-flatpak-builder --user --repo=repo --force-clean build-dir packaging/com.praneeshrv.Axec.json
+cd packaging
+flatpak-builder --user --repo=../repo --force-clean ../build-dir com.praneeshrv.Axec.json
+flatpak build-update-repo ../repo
+cd -
 flatpak build-update-repo repo
 ```
 

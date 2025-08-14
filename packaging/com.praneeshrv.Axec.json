@@ -36,7 +36,7 @@
         "install -Dm644 packaging/com.praneeshrv.Axec.metainfo.xml /app/share/metainfo/com.praneeshrv.Axec.metainfo.xml"
       ],
       "sources": [
-        { "type": "dir", "path": "." }
+  { "type": "dir", "path": ".." }
       ]
     }
   ]
