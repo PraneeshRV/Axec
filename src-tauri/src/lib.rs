@@ -8,6 +8,7 @@ use std::{
 };
 use tauri::AppHandle;
 
+
 const STORAGE_DIR: &str = ".local/share/axec/appimages";
 const APPLICATIONS_DIR: &str = ".local/share/applications";
 
