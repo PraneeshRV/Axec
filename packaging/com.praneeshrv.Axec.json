@@ -1,8 +1,8 @@
 {
     "app-id": "com.praneeshrv.Axec",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "46",
-    "sdk": "org.gnome.Sdk",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "24.08",
+    "sdk": "org.freedesktop.Sdk",
     "command": "axec",
     "finish-args": [
         "--share=ipc",
@@ -15,12 +15,12 @@
     },
     "modules": [
         {
-            "name": "axec",
+            "name": "Axec",
             "buildsystem": "simple",
             "build-commands": [
                 "npm install",
                 "npm run tauri build",
-                "install -Dm755 src-tauri/target/release/axec /app/bin/axec",
+                "install -Dm755 src-tauri/target/release/Axec /app/bin/Axec",
                 "install -Dm644 packaging/com.praneeshrv.Axec.desktop /app/share/applications/com.praneeshrv.Axec.desktop",
                 "install -Dm644 packaging/com.praneeshrv.Axec.metainfo.xml /app/share/metainfo/com.praneeshrv.Axec.metainfo.xml",
                 "install -Dm644 src-tauri/icons/128x128.png /app/share/icons/hicolor/128x128/apps/com.praneeshrv.Axec.png"
