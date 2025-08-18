@@ -11,15 +11,22 @@
         "--filesystem=home"
     ],
     "build-options": {
-        "append-path": "/usr/lib/sdk/node20/bin"
+        "append-path": "/usr/lib/sdk/node20/bin",
+        "env": {
+            "NPM_CONFIG_CACHE": "/run/build/Axec/.npm",
+            "NPM_CONFIG_AUDIT": "false",
+            "NPM_CONFIG_FUND": "false",
+            "NPM_CONFIG_JOBS": "max"
+        }
     },
     "modules": [
         {
             "name": "Axec",
             "buildsystem": "simple",
             "build-commands": [
-                "npm install",
-                "npm run tauri build",
+                "npm ci",
+                "npm run build",
+                "npm run tauri build -- --bundles none",
                 "install -Dm755 src-tauri/target/release/Axec /app/bin/Axec",
                 "install -Dm644 packaging/com.praneeshrv.Axec.desktop /app/share/applications/com.praneeshrv.Axec.desktop",
                 "install -Dm644 packaging/com.praneeshrv.Axec.metainfo.xml /app/share/metainfo/com.praneeshrv.Axec.metainfo.xml",
