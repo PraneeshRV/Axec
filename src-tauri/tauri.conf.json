@@ -1,26 +1,29 @@
 {
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeDevCommand": "npm run dev",
     "beforeBuildCommand": "npm run build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../src"
+    "beforeDevCommand": "npm run dev",
+    "frontendDist": "../src",
+    "devUrl": "http://localhost:1420"
   },
-  "package": {
-    "productName": "Axec",
-    "version": "0.1.0"
-  },
-  "tauri": {
-    "allowlist": {
-      "all": false,
-      "shell": {
-        "all": false,
-        "open": true
+  "app": {
+    "identifier": "com.praneeshrv.axec",
+    "version": "0.1.0",
+    "windows": [
+      {
+        "title": "Axec",
+        "width": 800,
+        "height": 600,
+        "resizable": true,
+        "fullscreen": false
       }
+    ],
+    "security": {
+      "csp": null
     },
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.praneeshrv.axec",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -28,18 +31,11 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ]
-    },
-    "security": {
-      "csp": null
-    },
-    "windows": [
-      {
-        "fullscreen": false,
-        "resizable": true,
-        "title": "Axec",
-        "width": 800,
-        "height": 600
-      }
-    ]
+    }
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    }
   }
 }
