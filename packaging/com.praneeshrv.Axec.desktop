@@ -1,8 +1,7 @@
 [Desktop Entry]
-Type=Application
 Name=Axec
-Comment=Manage AppImage applications
-Exec=axec %U
+Exec=axec
 Icon=com.praneeshrv.Axec
-Terminal=false
+Type=Application
 Categories=Utility;
+StartupWMClass=axec

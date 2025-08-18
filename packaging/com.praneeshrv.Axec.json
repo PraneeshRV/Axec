@@ -1,43 +1,36 @@
 {
-  "app-id": "com.praneeshrv.Axec",
-  "runtime": "org.freedesktop.Platform",
-  "runtime-version": "24.08",
-  "sdk": "org.freedesktop.Sdk",
-  "sdk-extensions": [
-    "org.freedesktop.Sdk.Extension.rust-stable",
-    "org.freedesktop.Sdk.Extension.node20"
-  ],
-  "command": "axec",
-  "finish-args": [
-    "--share=ipc",
-    "--socket=fallback-x11",
-    "--socket=wayland",
-    "--device=dri",
-    "--env=WEBKIT_DISABLE_DMABUF_RENDERER=1"
-  ],
-  "build-options": {
-    "append-path": "/usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/node20/bin",
-    "env": {
-      "CARGO_HOME": "/run/build/axec/cargo",
-      "RUSTFLAGS": "-C target-cpu=native"
-    }
-  },
-  "modules": [
-    {
-      "name": "axec",
-      "buildsystem": "simple",
-      "build-commands": [
-        "npm ci",
-        "npm run build",
-        "npm run tauri build -- --bundles none",
-        "install -Dm755 src-tauri/target/release/axec /app/bin/axec",
-        "install -Dm644 packaging/com.praneeshrv.Axec.desktop /app/share/applications/com.praneeshrv.Axec.desktop",
-        "install -Dm644 src-tauri/icons/128x128.png /app/share/icons/hicolor/128x128/apps/com.praneeshrv.Axec.png",
-        "install -Dm644 packaging/com.praneeshrv.Axec.metainfo.xml /app/share/metainfo/com.praneeshrv.Axec.metainfo.xml"
-      ],
-      "sources": [
-  { "type": "dir", "path": ".." }
-      ]
-    }
-  ]
+    "app-id": "com.praneeshrv.Axec",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "46",
+    "sdk": "org.gnome.Sdk",
+    "command": "axec",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--filesystem=home"
+    ],
+    "build-options": {
+        "append-path": "/usr/lib/sdk/node20/bin"
+    },
+    "modules": [
+        {
+            "name": "axec",
+            "buildsystem": "simple",
+            "build-commands": [
+                "npm install",
+                "npm run tauri build",
+                "install -Dm755 src-tauri/target/release/axec /app/bin/axec",
+                "install -Dm644 packaging/com.praneeshrv.Axec.desktop /app/share/applications/com.praneeshrv.Axec.desktop",
+                "install -Dm644 packaging/com.praneeshrv.Axec.metainfo.xml /app/share/metainfo/com.praneeshrv.Axec.metainfo.xml",
+                "install -Dm644 src-tauri/icons/128x128.png /app/share/icons/hicolor/128x128/apps/com.praneeshrv.Axec.png"
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": ".."
+                }
+            ]
+        }
+    ]
 }

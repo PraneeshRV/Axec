@@ -77,8 +77,11 @@ Notes:
 
 ## 🧰 Tech stack
 
-- Tauri v2 (Rust backend)
-- React + Vite + Tailwind CSS (TypeScript)
+-   **[Tauri](https://tauri.app/):** A framework for building tiny, blazing fast binaries for all major desktop platforms.
+-   **[React](https://reactjs.org/):** A JavaScript library for building user interfaces.
+-   **[TypeScript](https://www.typescriptlang.org/):** A typed superset of JavaScript that compiles to plain JavaScript.
+-   **[Vite](https://vitejs.dev/):** A fast frontend build tool.
+-   **[Rust](https://www.rust-lang.org/):** A language empowering everyone to build reliable and efficient software.
 
 ## 🔒 Security & permissions
 
@@ -87,14 +90,16 @@ Notes:
 
 ## 🗺️ Roadmap
 
-- AppImage update checks (optional)
+- AppImage update checks
 - Drag-and-drop and multi-select
 - More robust icon extraction and metadata parsing
 
 ## 🤝 Contributing
 
-PRs and issues are welcome. Please keep changes small and focused.
+PRs and issues are welcome.
+If you have a suggestion that would make this better, please fork the repo and create a pull request.
+
 
 ## 📄 License
 
-MIT — see `LICENSE`.
+This project is licensed under the MIT License. See the `LICENSE` file for more information.
