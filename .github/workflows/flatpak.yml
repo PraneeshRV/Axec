@@ -50,7 +50,24 @@ jobs:
             --delete-build-dirs \
             ../build-dir/appdir \
             com.praneeshrv.Axec.json
-          flatpak build-bundle ../build-dir/repo ../Axec.flatpak com.praneeshrv.Axec stable
+          flatpak build-bundle ../build-dir/repo Axec.flatpak com.praneeshrv.Axec stable
+          # Create installation instructions
+          cat > Axec-INSTALL.txt << 'EOF'
+          # Installing Axec Flatpak
+
+          ## Method 1: Install from bundle file
+          flatpak install --user Axec.flatpak
+
+          ## Method 2: Install from GitHub Pages repo
+          flatpak remote-add --user praneeshrv-axec https://praneeshrv.github.io/Axec/
+          flatpak install --user praneeshrv-axec com.praneeshrv.Axec
+
+          ## To run Axec after installation
+          flatpak run com.praneeshrv.Axec
+
+          ## To uninstall
+          flatpak uninstall --user com.praneeshrv.Axec
+          EOF
 
       - name: Publish Flatpak repo to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -64,4 +81,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Axec-flatpak-bundle
-          path: ../Axec.flatpak
+          path: |
+            packaging/Axec.flatpak
+            packaging/Axec-INSTALL.txt
