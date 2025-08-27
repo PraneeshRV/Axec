@@ -34,6 +34,7 @@
                 "npm ci",
                 "npm run build",
                 "npm run tauri build -- --bundles none",
+                "ls -la src-tauri/target/release/",
                 "install -Dm755 src-tauri/target/release/axec /app/bin/axec",
                 "install -Dm644 packaging/com.praneeshrv.Axec.desktop /app/share/applications/com.praneeshrv.Axec.desktop",
                 "install -Dm644 packaging/com.praneeshrv.Axec.metainfo.xml /app/share/metainfo/com.praneeshrv.Axec.metainfo.xml",

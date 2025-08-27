@@ -14,7 +14,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set npm registry to official
-        run: npm set registry https://registry.npmjs.org/
+        run: |
+          npm set registry https://registry.npmjs.org/
+          npm config get registry
 
       - name: Install Flatpak tooling and runtimes
         run: |
@@ -31,6 +33,10 @@ jobs:
         run: |
           npm cache clean --force
           npm config set registry https://registry.npmjs.org/
+          which node || echo "Node not found"
+          which npm || echo "NPM not found"
+          node --version
+          npm --version
 
       - name: Build Flatpak repo
         working-directory: packaging
