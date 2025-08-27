@@ -4,7 +4,7 @@
 
 Lightweight, fast AppImage manager built with Tauri + React.
 
-## (Not fully tested yet !)
+## (Not fully tested yet !) [![Build and publish Flatpak repo](https://github.com/PraneeshRV/Axec/actions/workflows/flatpak.yml/badge.svg)](https://github.com/PraneeshRV/Axec/actions/workflows/flatpak.yml)
 
 </div>
 
