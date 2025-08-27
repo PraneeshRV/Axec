@@ -50,9 +50,29 @@ If the menu entry doesn’t appear immediately, it usually shows up in a few sec
 
 ## 📦 Flatpak
 
+### Install from releases (recommended)
+
+Download the latest `.flatpak` bundle from [GitHub Releases](https://github.com/PraneeshRV/Axec/releases) and install:
+
+```sh
+flatpak install --user Axec.flatpak
+flatpak run com.praneeshrv.Axec
+```
+
+### Install from repository
+
+Add the repository and install from there:
+
+```sh
+flatpak remote-add --user praneeshrv-axec https://praneeshrv.github.io/Axec/
+flatpak install --user praneeshrv-axec com.praneeshrv.Axec
+flatpak run com.praneeshrv.Axec
+```
+
+### Local build and run
+
 Flatpak manifest (Flathub-ready baseline): `packaging/com.praneeshrv.Axec.json` (org.freedesktop 24.08).
 
-Local build and run:
 ```sh
 flatpak install -y flathub org.freedesktop.Platform//24.08 org.freedesktop.Sdk//24.08 \
 	org.freedesktop.Sdk.Extension.rust-stable org.freedesktop.Sdk.Extension.node20
@@ -62,7 +82,8 @@ cd -
 flatpak run com.praneeshrv.Axec
 ```
 
-Self-host a repo (optional):
+### Self-host a repo (optional)
+
 ```sh
 cd packaging
 flatpak-builder --user --repo=../repo --force-clean ../build-dir com.praneeshrv.Axec.json
@@ -71,8 +92,10 @@ cd -
 flatpak build-update-repo repo
 ```
 
-Notes:
+### Notes
+
 - Inside a Flatpak sandbox, Axec stores data under XDG data dir and skips creating host `.desktop` files (policy-friendly).
+- Axec works from any Flatpak installation: user (`--user`) or system-wide installations.
 - For Flathub submission, pin immutable sources and complete AppStream (homepage, screenshots, releases).
 
 ## 🧰 Tech stack
