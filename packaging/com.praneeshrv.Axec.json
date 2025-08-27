@@ -25,7 +25,9 @@
             "NPM_CONFIG_LOGLEVEL": "info",
             "NPM_CONFIG_PROGRESS": "true",
             "NODE_VERSION": "20",
-            "CARGO_HOME": "/run/build/Axec/.cargo"
+            "CARGO_HOME": "/run/build/Axec/.cargo",
+            "PKG_CONFIG_ALLOW_SYSTEM_CFLAGS": "1",
+            "PKG_CONFIG_ALLOW_SYSTEM_LIBS": "1"
         }
     },
     "modules": [
@@ -37,6 +39,10 @@
                 "which node && node --version",
                 "which npm && npm --version",
                 "npm config list",
+                "echo 'Debugging pkg-config setup...'",
+                "which pkg-config && pkg-config --version",
+                "echo 'PKG_CONFIG_PATH:' $PKG_CONFIG_PATH",
+                "pkg-config --list-all | grep -E '(glib|gtk|gobject)' || echo 'No gtk/glib packages found'",
                 "echo 'Installing dependencies...'",
                 "npm install --no-audit --no-fund",
                 "echo 'Building frontend...'",
