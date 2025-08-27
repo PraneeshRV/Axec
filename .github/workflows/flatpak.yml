@@ -24,10 +24,22 @@ jobs:
             org.freedesktop.Sdk.Extension.rust-stable//24.08 \
             org.freedesktop.Sdk.Extension.node20//24.08
 
+      - name: Prepare Node.js environment
+        run: |
+          npm set registry https://registry.npmjs.org/
+          npm cache clean --force
+
       - name: Build Flatpak repo
         working-directory: packaging
         run: |
           mkdir -p ../build-dir/repo
+          n=0
+          until [ "$n" -ge 3 ]
+          do
+            npm install && break
+            n=$((n+1))
+            sleep 5
+          done
           flatpak-builder \
             --force-clean \
             --repo=../build-dir/repo \
